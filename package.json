@@ -1,0 +1,19 @@
+{
+  "name": "teller-api",
+  "version": "0.0.0",
+  "description": "Teller API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Juan La Jara, Hiperderecho",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "mailgun-js": "^0.7.7",
+    "rethinkdb": "^2.2.0",
+    "thinky": "^2.2.0"
+  }
+}
