@@ -49,10 +49,10 @@ Question.post( 'save', function ( next ) {
 		self.publicAuthor      = createPublicAuthor( self.id, self.author );
 
 		methods.sendQuestionToAgency(
-		  { from    : self.publicAuthorEmail
-		  , to      : self.agencyId
-		  , subject : self.title
-		  , html    : self.content
+		  { from     : self.publicAuthorEmail
+		  , agencyId : self.agencyId
+		  , subject  : self.title
+		  , html     : self.content
 		  } )
 		.catch( function () { throw new Error('Couldn\'t send Email') } );
 		next();

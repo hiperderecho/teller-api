@@ -3,7 +3,7 @@ var Agency   = require( '../models/agency' );
 
 module.exports = function ( emailData ) {
 
-	return Agency.get( emailData.to )
+	return Agency.get( emailData.agencyId )
 	.run()
 	.then( function ( result ) {
 
