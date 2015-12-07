@@ -3,11 +3,12 @@ var r      = require('../orm').r;
 var type   = require('../orm').type;
 
 var methods = require('../methods');
+var config  = require('../config');
 
 var createPublicAuthorEmail = function ( id, author ) {
 	var emailParts = author.split('@');
 
-	return id + '-' + emailParts[0] + '-' + emailParts[1] + '@' + 'pidela.info';
+	return id + '-' + emailParts[0] + '-' + emailParts[1] + '@' + config.emailing.publicHostname;
 };
 
 var createPublicAuthor = function ( id, author ) {

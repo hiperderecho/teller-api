@@ -6,4 +6,5 @@ module.exports = function ( app ) {
 	// endpoints
 	require( './questions' )( app );
 	require( './agencies'  )( app );
+	require( './answers'   )( app );
 };

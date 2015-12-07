@@ -13,7 +13,7 @@ exports.sendEmail = function ( externalEmailData ) {
 	console.log( 'SEND EMAIL', externalEmailData );
 	return mailgun.messages().send( externalEmailData || emailData )
 	.then( function ( result ) {
-		// console.log( 'result', result );
+		console.log( 'result', result );
 	}, function ( error ) {
 		console.log( 'error', error );
 	} );
