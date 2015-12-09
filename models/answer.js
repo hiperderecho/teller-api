@@ -7,6 +7,7 @@ var Answer = thinky.createModel('answers',
 , questionId : type.string()
 , content    : type.string().required()
 , author     : type.string().email()
+, attachment : type.string()
 , createdAt  : type.date().default( r.now() )
 }
 );
