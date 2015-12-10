@@ -56,7 +56,7 @@ Question.post( 'save', function ( next ) {
 		  , subject  : self.title
 		  , html     : self.content
 		  } )
-		.catch( function () { throw new Error('Couldn\'t send Email') } );
+		.catch( function ( error ) { throw new Error( 'Couldn\'t send Email', error, error.stack ) } );
 		next();
 	} )
 	.catch( function () {
