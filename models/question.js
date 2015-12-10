@@ -56,7 +56,11 @@ Question.post( 'save', function ( next ) {
 		  , subject  : self.title
 		  , html     : self.content
 		  } )
-		.catch( function ( error ) { throw new Error( 'Couldn\'t send Email', error, error.stack ) } );
+		.catch( function ( error ) {
+			console.log( 'CONFIG', process.env.TELLER_EMAILING_APIKEY, process.env.TELLER_EMAILING_DOMAIN );
+			console.log( 'sendQuestionToAgency error', error );
+			throw new Error( 'Couldn\'t send Email: ' + error );
+		} );
 		next();
 	} )
 	.catch( function () {
