@@ -33,6 +33,7 @@ var Question = thinky.createModel('questions',
 , content           : type.string().required().min(40).max(800)
 , status            : type.string().default('open')
 , author            : type.string().email().required()
+, authorFullName    : type.string().min(5).max(60)
 , publicAuthorEmail : type.string()
 , publicAuthor      : type.string()
 , agencyId          : type.string()
