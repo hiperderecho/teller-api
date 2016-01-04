@@ -9,7 +9,7 @@ module.exports = function ( app ) {
 	app.get ('/admin/agencias'                      , require('./onAdminAgenciesGetRequest') );
 	app.get ('/admin/preguntas/:questionId'         , require('./onAdminQuestionGetRequest') );
 	app.get ('/admin/crear-agencia'                 , require('./onAdminCreateAgencyGetRequest') );
-	app.post('/admin/create-agency'                 , require('./onAdminCreateAgencyPostrequest') );
+	app.post('/admin/create-agency'                 , require('./onAdminCreateAgencyPostRequest') );
 	app.get ('/admin/agencias/:agencyId/:agencyName', require('./onAdminAgencyGetRequest') );
 	app.get ('/signOut'                             , require('./onAdminSignOutGetRequest') );
 	app.post('/signIn'                              , require('./onAdminSignInPostRequest') );
