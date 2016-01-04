@@ -18,12 +18,12 @@ var Answer = thinky.createModel('answers',
 
 Answer.post( 'save', function ( next ) {
 	var self      = this;
-	var emailData = {};
+	// var emailData = {};
 
-	emailData.from    = config.emailing.noReply;
-	emailData.to      = '';
-	emailData.subject = config.emailing.questionStatusChangedSubject;
-	emailData.html    = '';
+	// emailData.from    = config.emailing.noReply;
+	// emailData.to      = '';
+	// emailData.subject = config.emailing.questionStatusChangedSubject;
+	// emailData.html    = '';
 
 	methods.updateQuestionByQuestionId( self.questionId, { status: 'unsuccessful' } )
 	.then( function () {

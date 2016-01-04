@@ -2,6 +2,7 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var cors        = require('cors');
 var compression = require('compression');
+require('console-stamp')(console);
 
 var app       = express();
 var parseForm = bodyParser.urlencoded( { extended: true } );

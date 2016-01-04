@@ -10,13 +10,16 @@ var emailData =
 };
 
 exports.sendEmail = function ( externalEmailData ) {
-	console.log( 'SEND EMAIL', externalEmailData );
+
+	console.log( '[send-email]', externalEmailData );
 	return mailgun.messages().send( externalEmailData || emailData )
 	.then( function ( result ) {
-		console.log( 'result', result );
+
+		console.log( '[mailgun-result]', result );
 		return true;
 	}, function ( error ) {
-		console.log( 'error', error );
+
+		console.log( '[mailgun-error]', error );
 		return error;
 	} );
 };

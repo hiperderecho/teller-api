@@ -69,8 +69,8 @@ Question.post( 'save', function ( next ) {
 			} )
 		} )
 		.catch( function ( error ) {
-			console.log( 'CONFIG', process.env.TELLER_EMAILING_APIKEY, process.env.TELLER_EMAILING_DOMAIN );
-			console.log( 'sendQuestionToAgency error', error );
+
+			console.log( '[question-model sendQuestionToAgency]', error );
 			throw new Error( 'Couldn\'t send Email: ' + error );
 		} );
 		next();

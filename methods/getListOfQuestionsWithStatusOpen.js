@@ -10,6 +10,7 @@ var statusFilter = function ( doc ) {
 
 module.exports = function () {
 
-	// return Question.orderBy( { index: 'createdAt' } ).without('authorSecret').filter( statusFilter ).execute();
-	return Question.orderBy( { index: 'createdAt' } ).filter( statusFilter ).run();
+	return Question.orderBy( { index: 'createdAt' } ).without('authorSecret').filter( statusFilter ).execute();
+	// Development
+	// return Question.orderBy( { index: 'createdAt' } ).filter( statusFilter ).run();
 };

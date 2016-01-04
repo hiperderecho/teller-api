@@ -7,7 +7,7 @@ var config   = require('../../config');
 var onListOfQuestions = function ( questions ) {
 	var now = new Date();
 
-	console.log( 'tick', now );
+	console.log( '[schedule-tick]', now );
 	questions.forEach( function ( question ) {
 
 		if ( now > moment( question.createdAt ).add(5, 'days').toDate() ) {
