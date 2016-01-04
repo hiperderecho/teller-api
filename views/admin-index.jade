@@ -1,0 +1,25 @@
+extends ./layout.jade
+
+block content
+	div.content-fix-top
+		h4 Pidela.info Dashboard
+			h5 The Status Checker runs every day at 02:30 but you can manually run it from here
+			div.runStatusChecker
+				button.btn.btn-default.js-runStatusCheckerBtn(type="button") Run Status Checker
+			hr
+			h5 Questions
+			table.table.table-hover.questions
+				thead
+					tr
+						th Created At
+						th Title
+						th Status
+				tbody
+					- each question in questions
+						tr
+							td
+								a(href="/admin/preguntas/" + question.id) #{question.formattedDate}
+							td
+								a(href="/admin/preguntas/" + question.id) #{question.title}
+							td
+								a(href="/admin/preguntas/" + question.id) #{question.status}

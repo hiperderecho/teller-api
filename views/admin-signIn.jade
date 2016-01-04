@@ -1,0 +1,13 @@
+extends ./layout.jade
+
+block content
+	div#login-form-holder.js-content.content-fix-top
+		h4 Pidela.info Dashboard
+		form#loginForm
+			div.form-group
+				label(for='loginFormEmail') Email
+				input#loginFormEmail.form-control(type='email',placeholder='Email',name='email')
+			div.form-group
+				label(for='loginFormPassword') Password
+				input#loginFormPassword.form-control(type='password',placeholder='Password',name='password')
+			button.btn.btn-default(type='submit') Enviar

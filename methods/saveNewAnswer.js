@@ -13,17 +13,11 @@ module.exports = function ( body ) {
 	var answer;
 	var attachment = {};
 
-	answerToSave.questionId = getQuestionIdFromRecipient( body.recipient );
-	answerToSave.content    = body.bodyHtml;
-	answerToSave.author     = body.sender;
-
-	// Manage file
-	if ( body.filename ) {
-		attachment.filename     = body.filename;
-		attachment.originalname = body.originalname;
-		attachment.mimeType     = body.mimeType;
-		answerToSave.attachment = JSON.stringify( attachment );
-	}
+	answerToSave.questionId  = getQuestionIdFromRecipient( body.recipient );
+	answerToSave.content     = body.bodyHtml;
+	answerToSave.author      = body.sender;
+	answerToSave.type        = 'agency';
+	answerToSave.attachments = body.attachments;
 
 	answer = new Answer( answerToSave );
 	return answer.save();

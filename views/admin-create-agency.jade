@@ -1,0 +1,14 @@
+extends ./layout.jade
+
+block content
+	div#create-agency-form-holder.js-content.content-fix-top
+		form#createAgencyForm
+			div.form-group
+				h4 Create a new Agency
+			div.form-group
+				label(for='createAgencyFormName') Name&times;
+				input#createAgencyFormName.form-control(type='text',placeholder='Name',name='name')
+			div.form-group
+				label(for='createAgencyFormEmail') Email&times;
+				input#createAgencyFormEmail.form-control(type='email',placeholder='Email',name='email')
+			button.btn.btn-default(type='submit') Send

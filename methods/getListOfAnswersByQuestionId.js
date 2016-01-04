@@ -3,5 +3,5 @@ var r      = require('../orm').r;
 
 module.exports = function ( questionId ) {
 
-	return Answer.filter( { questionId: questionId } ).execute();
+	return Answer.orderBy( { index: r.asc('createdAt') } ).filter( { questionId: questionId } ).execute();
 };

@@ -1,0 +1,18 @@
+extends ./layout.jade
+
+block content
+	div#update-agency-form-holder.js-content.content-fix-top
+		form#updateAgencyForm(data-agency-id=agency.id)
+			div.form-group
+				h4=agency.name
+			div.form-group
+				label(for='agencyFormName') Name&times; (5 chars min, 52 max)
+				input#updateAgencyFormName.form-control(type='text',placeholder='Name',name='name',value=agency.name)
+			div.form-group
+				label(for='agencyFormEmail') Email&times;
+				input#updateAgencyFormEmail.form-control(type='email',placeholder='Email',name='email',value=agency.email)
+			button.btn.btn-default(type='submit') Send
+	hr.content-fix-top
+	div#delete-agency-holder.content-fix-top
+		h4 Delete Agency
+		button.btn.btn-danger.js-deleteAgencyBtn(type="button") Delete

@@ -14,8 +14,10 @@ exports.sendEmail = function ( externalEmailData ) {
 	return mailgun.messages().send( externalEmailData || emailData )
 	.then( function ( result ) {
 		console.log( 'result', result );
+		return true;
 	}, function ( error ) {
 		console.log( 'error', error );
+		return error;
 	} );
 };
 

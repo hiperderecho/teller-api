@@ -2,13 +2,13 @@ var methods = require('../../methods');
 
 module.exports = function ( request, response ) {
 
-	methods.getListOfQuestions( request.query['limit'] )
+	methods.updateQuestionsStatusBySchedule()
 	.then( function ( result ) {
 
-		response.json( result );
+		response.json( { success: true } );
 	} )
 	.catch( function ( error ) {
 
-		response.status( 500 ).send( { error: error.message } );
+		response.status(500).json( { error: error.stack } );
 	} );
 };

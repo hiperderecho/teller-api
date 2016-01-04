@@ -1,0 +1,12 @@
+.content-fix-top {
+	position: relative;
+	top: 60px;
+}
+.questions tr>td {
+	padding: 0!important;
+}
+td a {
+	display: block;
+	padding: 8px;
+	width: 100%;
+}

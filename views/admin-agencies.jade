@@ -1,0 +1,17 @@
+extends ./layout.jade
+
+block content
+	div.content-fix-top
+		h4 Agencies
+			table.table.table-hover.agencies
+				thead
+					tr
+						th Name
+						th E-mail
+				tbody
+					- each agency in agencies
+						tr
+							td
+								a(href="/admin/agencias/" + agency.id + "/" + agency.name) #{agency.name}
+							td
+								a(href="/admin/agencias/" + agency.id + "/" + agency.name) #{agency.email}

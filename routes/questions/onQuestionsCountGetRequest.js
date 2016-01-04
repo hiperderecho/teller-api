@@ -2,7 +2,7 @@ var methods = require('../../methods');
 
 module.exports = function ( request, response ) {
 
-	methods.getListOfQuestions( request.query['limit'] )
+	methods.getQuestionsCount()
 	.then( function ( result ) {
 
 		response.json( result );

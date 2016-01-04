@@ -1,0 +1,41 @@
+extends ./layout.jade
+
+block content
+	div#question-form-holder.js-content.content-fix-top
+		form#questionForm(data-question-id=question.id)
+			div.form-group
+				h4=question.agencyName
+			div.form-group
+				label(for='questionFormAuthorFullName') Fullname&times; (5 chars min, 52 max)
+				input#questionFormAuthorFullName.form-control(type='text',placeholder='Author Fullname',name='authorFullName',value=question.authorFullName)
+			div.form-group
+				label(for='questionFormAuthor') Email&times;
+				input#questionFormAuthor.form-control(type='email',placeholder='Email',name='author',value=question.author)
+			div.form-group
+				label(for='questionFormTitle') Title&times; (5 chars min, 52 max)
+				input#questionFormTitle.form-control(type='text',placeholder='Title',name='title',value=question.title)
+			div.form-group
+				p
+					label Status
+				label(class="radio-inline")
+					input(type="radio",name="status",value="open",checked=question.status === "open")
+					| open
+				label(class="radio-inline")
+					input(type="radio",name="status",value="unanswered",checked=question.status === "unanswered")
+					| unanswered
+				label(class="radio-inline")
+					input(type="radio",name="status",value="successful",checked=question.status === "successful")
+					| successful
+				label(class="radio-inline")
+					input(type="radio",name="status",value="unsuccessful",checked=question.status === "unsuccessful")
+					| unsuccessful
+				label(class="radio-inline")
+					input(type="radio",name="status",value="flagged",checked=question.status === "flagged")
+					| flagged
+			div.form-group
+				label(for='questionFormContent') Message&times; ( 40 chars min, 800 max )
+				textarea#questionFormContent.form-control(rows='3',placeholder='Message',name='content')=question.content
+			div.form-group
+				p.collapse.js-ctaFormErrorMessage Please recheck the form values
+				p.collapse.js-ctaFormSuccessMessage Question Sent
+			button.btn.btn-default(type='submit') Send
