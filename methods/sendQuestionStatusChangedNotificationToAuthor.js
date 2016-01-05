@@ -10,7 +10,7 @@ module.exports = function ( emailData ) {
 	.then( function ( result ) {
 		var jadeOptions = {};
 
-		jadeOptions.questionPath = 'pidela.info/preguntas' + emailData.questionId + '/' + getSlug( result.title );
+		jadeOptions.questionPath = 'pidela.info/preguntas/' + emailData.questionId + '/' + getSlug( result.title );
 
 		emailData.to   = result.author;
 		emailData.html = jade.renderFile( 'views/emailing-question-has-new-answer-notification.jade', jadeOptions );
