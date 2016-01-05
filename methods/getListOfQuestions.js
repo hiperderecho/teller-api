@@ -12,10 +12,10 @@ var statusFilter = function ( doc ) {
 module.exports = function ( limit ) {
 
 	if ( limit ) {
-		return Question.orderBy( { index: r.desc('createdAt') } ).without('authorSecret').filter( statusFilter ).limit( +limit ).execute();
+		return Question.orderBy( { index: r.desc('createdAt') } ).without('g-recaptcha-response').without('authorSecret').filter( statusFilter ).limit( +limit ).execute();
 	}
 	if ( !limit ) {
-		return Question.orderBy( { index: r.desc('createdAt') } ).without('authorSecret').filter( statusFilter ).execute();
+		return Question.orderBy( { index: r.desc('createdAt') } ).without('g-recaptcha-response').without('authorSecret').filter( statusFilter ).execute();
 	}
 	// return Question.orderBy( { index: 'createdAt' } ).filter( statusFilter ).run();
 };
