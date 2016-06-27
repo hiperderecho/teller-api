@@ -10,7 +10,7 @@ var onListOfQuestions = function ( questions ) {
 	console.log( '[schedule-tick]', now );
 	questions.forEach( function ( question ) {
 
-		if ( now > moment( question.createdAt ).add(5, 'days').toDate() ) {
+		if ( now > moment( question.createdAt ).add( config.schedule.unansweredMaximunNumberOfDays, 'days').toDate() ) {
 
 			methods.updateQuestionStatusByQuestionId( question.id, config.schedule.unansweredStatus )
 			.catch( function ( error ) { console.log.bind( console ) } );

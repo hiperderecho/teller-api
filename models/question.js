@@ -1,4 +1,4 @@
-var shortid = require('shortid');
+var shortid    = require('shortid');
 
 var thinky = require('../orm').thinky;
 var r      = require('../orm').r;
@@ -7,10 +7,15 @@ var type   = require('../orm').type;
 var methods = require('../methods');
 var config  = require('../config');
 
+var unredactedContent;
+var unsavedDni;
+var unsavedAddress;
+
 var createPublicAuthorEmail = function ( id, author ) {
 	var emailParts = author.split('@');
 
-	return id + '-' + emailParts[0] + '-' + emailParts[1] + '@' + config.emailing.publicHostname;
+	return id + '@' + config.emailing.publicHostname;
+	// return id + '-' + emailParts[0] + '-' + emailParts[1] + '@' + config.emailing.publicHostname;
 };
 
 var createPublicAuthor = function ( id, author ) {
@@ -42,8 +47,7 @@ var Question = thinky.createModel('questions',
 , publicAuthor      : type.string()
 , agencyId          : type.string()
 , createdAt         : type.date().default( r.now() )
-}
-);
+} );
 
 // Will create a fake email after save
 Question.post( 'save', function ( next ) {
@@ -58,7 +62,10 @@ Question.post( 'save', function ( next ) {
 		  { from     : self.publicAuthorEmail
 		  , agencyId : self.agencyId
 		  , subject  : self.title
-		  , html     : self.content
+		  , content  : unredactedContent || '*' + self.content
+		  , fullName : self.authorFullName
+		  , dni      : unsavedDni
+		  , address  : unsavedAddress
 		  } )
 		.then( function () {
 			return methods.sendQuestionCreationNotificationToAuthor(
@@ -79,6 +86,21 @@ Question.post( 'save', function ( next ) {
 		console.error( error );
 		next();
 	} );
+} );
+
+// Redact emails in body
+Question.pre( 'save', function ( next ) {
+	var self = this;
+
+	unredactedContent = self.content;
+	self.content      = methods.formatHtmlToText( self.content );
+	self.content      = methods.redactEmailsFromText( self.content );
+	// We store this data momentarily
+	unsavedDni        = self.dni;
+	unsavedAddress    = self.address;
+	delete self.dni;
+	delete self.address;
+	next();
 } );
 
 Question.ensureIndex('createdAt');

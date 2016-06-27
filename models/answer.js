@@ -16,6 +16,14 @@ var Answer = thinky.createModel('answers',
 , createdAt   : type.date().default( r.now() )
 } );
 
+Answer.pre( 'save', function ( next ) {
+	var self = this;
+
+	self.content = methods.formatHtmlToText( self.content );
+	self.content = methods.redactEmailsFromText( self.content );
+	next();
+} );
+
 Answer.post( 'save', function ( next ) {
 	var self      = this;
 	var emailData = {};

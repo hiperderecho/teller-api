@@ -17,7 +17,8 @@ module.exports =
   { password : process.env.TELLER_API_ADMIN_PASSWORD || 'i2wES1Ky4vMeO3h'
   , email    : process.env.TELLER_API_ADMIN_EMAIL    || 'juanlajara@gmail.com'}
 , schedule:
-  { unansweredStatus : 'unanswered' }
+  { unansweredStatus              : 'unanswered'
+  , unansweredMaximunNumberOfDays : 10 }
 , express :
   { port: 5000 }
 };

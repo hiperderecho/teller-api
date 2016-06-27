@@ -1,11 +1,27 @@
-var Answer = require('../models/answer');
+var Answer  = require('../models/answer');
+var methods = require('./');
 
 var getQuestionIdFromRecipient = function ( recipient ) {
-	var newRecipient = recipient.split('-');
+	var newRecipient = recipient.split('@');
 
-	newRecipient.pop();
-	newRecipient.pop();
-	return newRecipient.join('-');
+	return newRecipient[0];
+};
+
+var isValidSender = function ( sender ) {
+	var agencyHostname = sender.split('@')[1];
+
+	return methods.getListOfAgencies()
+	.then( function ( agencies ) {
+		var isValid = false;
+
+		agencies.forEach( function ( agency ) {
+
+			if ( !!~agency.email.indexOf( agencyHostname ) ) {
+				isValid = true;
+			}
+		} );
+		return isValid;
+	} );
 };
 
 module.exports = function ( body ) {
@@ -19,6 +35,14 @@ module.exports = function ( body ) {
 	answerToSave.type        = 'agency';
 	answerToSave.attachments = body.attachments;
 
-	answer = new Answer( answerToSave );
-	return answer.save();
+	return isValidSender( body.sender )
+	.then( function ( result ) {
+
+		if ( !result ) {
+			throw new Error('Not a valid agency');
+		}
+		answer = new Answer( answerToSave );
+		return answer.save();
+	} )
+	.catch( console.log.bind( console ) );
 };

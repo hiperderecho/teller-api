@@ -1,9 +1,15 @@
+var fs          = require( 'fs' );
+var extend      = require( 'util' )._extend;
+var MarkdownIt  = require( 'markdown-it' );
+var MdVariables = require( 'mdvariables' );
+var getSlug     = require( 'speakingurl' );
+
 var emailing = require( '../emailing' );
 var Question = require( '../models/question' );
 var config   = require( '../config' );
-var extend   = require( 'util' )._extend;
-var jade     = require( 'jade' );
-var getSlug  = require( 'speakingurl' );
+
+var md  = new MarkdownIt();
+var src = fs.readFileSync( './views/emailing-question-author-secret-message.md', 'utf8' );
 
 module.exports = function ( questionId ) {
 	var emailData = extend( {}, emailing.getBoilerplateEmailData() );
@@ -14,13 +20,18 @@ module.exports = function ( questionId ) {
 	return Question.get( questionId )
 	.run()
 	.then( function ( result ) {
-		var jadeOptions = {};
+		var mdOptions = {};
 
-		jadeOptions.questionPath = 'pidela.info/preguntas/' + questionId + '/' + getSlug( result.title );
-		jadeOptions.authorSecret = result.authorSecret;
+		mdOptions.questionPath = 'pidela.info/preguntas/' + questionId + '/' + getSlug( result.title );
+		mdOptions.authorSecret = result.authorSecret;
+
+		md.use( MdVariables( function () {
+
+			return mdOptions;
+		} ) );
 
 		emailData.to   = result.author;
-		emailData.html = jade.renderFile( 'views/emailing-question-author-secret-message.jade', jadeOptions );
+		emailData.html = md.render( src );
 
 		// Development
 		// return true;

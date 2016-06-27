@@ -2,6 +2,7 @@ var methods = require('../../methods');
 
 module.exports = function ( request, response ) {
 
+	delete request.body['g-recaptcha-response'];
 	methods.saveNewQuestion( request.body )
 	.then( function ( result ) {
 

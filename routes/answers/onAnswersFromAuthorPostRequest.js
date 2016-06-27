@@ -2,9 +2,9 @@ var methods = require( '../../methods' );
 
 module.exports = function ( request, response ) {
 	var authorSecret = request.body.authorSecret;
-	var questionId  = request.body.questionId;
+	var questionId   = request.body.questionId;
 
-	methods.getQuestionById( questionId )
+	methods.getCompleteQuestionByQuestionId( questionId )
 	.then( function ( question ) {
 
 		if ( question.authorSecret === authorSecret ) {

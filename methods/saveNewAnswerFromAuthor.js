@@ -1,6 +1,13 @@
 var Answer   = require('../models/answer');
 var Agency   = require('../models/agency');
 var emailing = require('../emailing');
+var config   = require('../config');
+var methods  = require('./');
+
+var createPublicAuthorEmailFromId = function ( id ) {
+
+	return id + '@' + config.emailing.publicHostname;
+};
 
 module.exports = function ( body ) {
 	var answerToSave = {};
@@ -8,11 +15,11 @@ module.exports = function ( body ) {
 	var emailData    = {};
 
 	answerToSave.questionId = body.questionId;
-	answerToSave.content    = body.content;
-	answerToSave.author     = body.publicAuthorEmail;
+	answerToSave.content    = methods.redactEmailsFromText( methods.formatHtmlToText( body.content ) );
+	answerToSave.author     = createPublicAuthorEmailFromId( body.questionId );
 	answerToSave.type       = 'author';
 
-	emailData.from    = body.publicAuthorEmail;
+	emailData.from    = createPublicAuthorEmailFromId( body.questionId );
 	emailData.subject = '[RE] ' + body.title;
 	emailData.html    = body.content;
 

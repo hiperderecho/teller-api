@@ -25,6 +25,7 @@ exports.sendQuestionCreationNotificationToAuthor      = require( './sendQuestion
 exports.sendAuthorSecretByQuestionId                  = require( './sendAuthorSecretByQuestionId' );
 
 // Private Questions
+exports.getCompleteQuestionByQuestionId = require( './private/getCompleteQuestionByQuestionId' );
 exports.getListOfAllQuestions           = require( './private/getListOfAllQuestions' );
 exports.updateQuestionByQuestionId      = require( './private/updateQuestionByQuestionId' );
 exports.updateQuestionsStatusBySchedule = require( './private/updateQuestionsStatusBySchedule' );
@@ -32,3 +33,7 @@ exports.updateQuestionsStatusBySchedule = require( './private/updateQuestionsSta
 // Private Agencies
 exports.updateAgencyByAgencyId = require( './private/updateAgencyByAgencyId' );
 exports.deleteAgencyByAgencyId = require( './private/deleteAgencyByAgencyId' );
+
+// Utils
+exports.redactEmailsFromText = require( './redactEmailsFromText' );
+exports.formatHtmlToText     = require( './formatHtmlToText' );
