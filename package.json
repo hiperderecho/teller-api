@@ -26,5 +26,9 @@
     "shortid": "^2.2.4",
     "speakingurl": "^7.0.0",
     "thinky": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hiperderecho/teller-api.git"
   }
 }
