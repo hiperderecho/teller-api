@@ -8,7 +8,6 @@ var app       = express();
 var parseForm = bodyParser.urlencoded( { extended: true } );
 
 app.use( bodyParser.json() );
-// app.use( bodyParser.urlencoded({extended: true}) );
 app.use( parseForm );
 app.use( cors() );
 app.use( compression() );
@@ -21,5 +20,6 @@ require( './routes' )( app );
 require( './schedule' );
 
 app.listen( process.env.PORT || 5000, function() {
+
 	console.log( 'listening on', process.env.PORT || 5000 );
 } );

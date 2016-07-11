@@ -17,5 +17,4 @@ module.exports = function ( limit ) {
 	if ( !limit ) {
 		return Question.orderBy( { index: r.desc('createdAt') } ).without('g-recaptcha-response').without('authorSecret').filter( statusFilter ).execute();
 	}
-	// return Question.orderBy( { index: 'createdAt' } ).filter( statusFilter ).run();
 };

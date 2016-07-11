@@ -5,7 +5,7 @@ module.exports = function ( request, response ) {
 	var status       = request.body.status;
 	var authorSecret = request.body.authorSecret;
 
-	methods.getQuestionById( questionId )
+	methods.getCompleteQuestionByQuestionId( questionId )
 	.then( function ( question ) {
 
 		if ( question.authorSecret === authorSecret ) {

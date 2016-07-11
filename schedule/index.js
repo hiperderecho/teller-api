@@ -1,10 +1,10 @@
-var CronJob = require( "cron" ).CronJob;
+var CronJob = require('cron').CronJob;
 
 var methods = require('../methods');
 
 var onCronJobTick = function () {
 
-	console.log( '[cron-job tick]' );
+	console.log('[cron-job tick]');
 	methods.updateQuestionsStatusBySchedule();
 };
 

@@ -77,7 +77,6 @@ Question.post( 'save', function ( next ) {
 		} )
 		.catch( function ( error ) {
 
-			console.log( '[question-model sendQuestionToAgency]', error );
 			throw new Error( 'Couldn\'t send Email: ' + error );
 		} );
 		next();
