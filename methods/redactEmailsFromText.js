@@ -4,7 +4,7 @@ var escapeRegExp = function ( str ) {
 };
 
 module.exports = function ( text ) {
-	var splittedText = text.replace( /\n/g, ' xbreak-linex ' ).split(' ');
+	var splittedText = text.replace( /\r/g, '' ).replace( /\n/g, ' xbreak-linex ' ).split(' ');
 	var emailRule = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 	var email;
 	var redactedEmail;

@@ -1,4 +1,5 @@
-var shortid    = require('shortid');
+var shortid = require('shortid');
+var extend  = require('util')._extend;
 
 var thinky = require('../orm').thinky;
 var r      = require('../orm').r;
@@ -68,6 +69,10 @@ Question.post( 'save', function ( next ) {
 		  , address  : unsavedAddress
 		  } )
 		.then( function () {
+
+			unredactedContent = null;
+			unsavedAddress    = null;
+			unsavedDni        = null;
 			return methods.sendQuestionCreationNotificationToAuthor(
 			{ from     : config.emailing.noReply
 			, subject  : config.emailing.questionCreationSubject
@@ -92,7 +97,7 @@ Question.pre( 'save', function ( next ) {
 	var self = this;
 
 	self.content      = methods.formatHtmlToText( self.content );
-	unredactedContent = self.content;
+	unredactedContent = extend({},self).content;
 	self.content      = methods.redactEmailsFromText( self.content );
 	// We store this data momentarily
 	unsavedDni        = self.dni;
