@@ -92,7 +92,7 @@ Question.pre( 'save', function ( next ) {
 	var self = this;
 
 	self.content      = methods.formatHtmlToText( self.content );
-	unredactedContent = methods.formatHtmlToText( self.content );
+	unredactedContent = self.content;
 	self.content      = methods.redactEmailsFromText( self.content );
 	// We store this data momentarily
 	unsavedDni        = self.dni;

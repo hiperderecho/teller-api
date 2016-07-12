@@ -1,5 +1,10 @@
+var escapeRegExp = function ( str ) {
+
+	return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
+};
+
 module.exports = function ( text ) {
-	var splittedText = text.replace( /\n/g, " " ).split(' ');
+	var splittedText = text.replace( /\n/g, ' xbreak-linex ' ).split(' ');
 	var emailRule = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 	var email;
 	var redactedEmail;
@@ -14,5 +19,5 @@ module.exports = function ( text ) {
 			splittedText[ index ] = redactedEmail;
 		}
 	} );
-	return splittedText.join(' ');
+	return splittedText.join(' ').replace( new RegExp( escapeRegExp('xbreak-linex'), 'g' ), '\n' );
 };
