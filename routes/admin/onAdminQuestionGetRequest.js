@@ -23,7 +23,7 @@ module.exports = function ( request, response ) {
 	adminSession.email = 'true';
 	if ( adminSession.email ) {
 
-		methods.getQuestionById( questionId )
+		methods.getCompleteQuestionByQuestionId( questionId )
 		.then( onGetQuestionById )
 		.then( getListOfAgencies )
 		.then( function ( givens ) {
