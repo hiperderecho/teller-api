@@ -6,10 +6,10 @@ var getSlug     = require( 'speakingurl' );
 var emailing = require( '../emailing' );
 var Question = require( '../models/question' );
 
-var md  = new MarkdownIt();
 var src = fs.readFileSync( './views/emailing-question-has-new-answer-notification.md', 'utf8' );
 
 module.exports = function ( emailData ) {
+	var md  = new MarkdownIt();
 
 	return Question.get( emailData.questionId )
 	.run()

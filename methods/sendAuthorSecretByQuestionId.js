@@ -8,11 +8,11 @@ var emailing = require( '../emailing' );
 var Question = require( '../models/question' );
 var config   = require( '../config' );
 
-var md  = new MarkdownIt();
 var src = fs.readFileSync( './views/emailing-question-author-secret-message.md', 'utf8' );
 
 module.exports = function ( questionId ) {
 	var emailData = extend( {}, emailing.getBoilerplateEmailData() );
+	var md        = new MarkdownIt();
 
 	emailData.subject = config.emailing.authorSecretSubject;
 	emailData.from    = config.emailing.noReply;
