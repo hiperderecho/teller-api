@@ -12,7 +12,7 @@ module.exports = function ( emailData ) {
 	var mdOptions = {};
 	var md        = new MarkdownIt();
 
-	mdOptions.questionPath = 'pidela.info/preguntas/' + emailData.question.id + '/' + getSlug( emailData.question.title );
+	mdOptions.questionPath = 'pidela.info/solicitudes/' + emailData.question.id + '/' + getSlug( emailData.question.title );
 	mdOptions.authorSecret = emailData.question.authorSecret;
 
 	md.use( MdVariables( function () {

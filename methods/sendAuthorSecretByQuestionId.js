@@ -22,7 +22,7 @@ module.exports = function ( questionId ) {
 	.then( function ( result ) {
 		var mdOptions = {};
 
-		mdOptions.questionPath = 'pidela.info/preguntas/' + questionId + '/' + getSlug( result.title );
+		mdOptions.questionPath = 'pidela.info/solicitudes/' + questionId + '/' + getSlug( result.title );
 		mdOptions.authorSecret = result.authorSecret;
 
 		md.use( MdVariables( function () {

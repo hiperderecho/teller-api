@@ -16,7 +16,7 @@ module.exports = function ( emailData ) {
 	.then( function ( result ) {
 		var mdOptions = {};
 
-		mdOptions.questionPath = 'pidela.info/preguntas/' + emailData.questionId + '/' + getSlug( result.title );
+		mdOptions.questionPath = 'pidela.info/solicitudes/' + emailData.questionId + '/' + getSlug( result.title );
 		mdOptions.authorSecret = result.authorSecret;
 
 		md.use( MdVariables( function () {
