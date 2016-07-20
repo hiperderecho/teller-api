@@ -4,5 +4,6 @@ module.exports = function ( html ) {
 
 	return htmlToText.fromString( html, { hideLinkHrefIfSameAsText: true
 	                                    , preserveNewlines        : true
+	                                    , wordwrap                : false
 	                                    } );
 };
