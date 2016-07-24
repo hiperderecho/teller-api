@@ -8,4 +8,6 @@ Toma nota de tu Código Secreto de Solicitud que necesitarás para poder calific
 
 Código Secreto de Solicitud: @authorSecret
 
-¡Gracias por usar Pidela.info!
+¡Gracias por usar [Pidela.info](http://www.pidela.info/]!
+
+[Hiperderecho](http://www.hiperderecho.org/)
