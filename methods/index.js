@@ -14,9 +14,10 @@ exports.saveNewAnswerFromAuthor      = require( './saveNewAnswerFromAuthor' );
 exports.getListOfAnswersByQuestionId = require( './getListOfAnswersByQuestionId' );
 
 // Agencies
-exports.getListOfAgencies  = require( './getListOfAgencies' );
-exports.getAgencyById      = require( './getAgencyById' );
-exports.saveNewAgency      = require( './saveNewAgency' );
+exports.getListOfAgencies                            = require( './getListOfAgencies' );
+exports.getAgencyById                                = require( './getAgencyById' );
+exports.saveNewAgency                                = require( './saveNewAgency' );
+exports.getListOfAgenciesOrderedByQuestionMetaStatus = require( './getListOfAgenciesOrderedByQuestionMetaStatus' );
 
 // Emailing
 exports.sendQuestionToAgency                          = require( './sendQuestionToAgency' );

@@ -18,6 +18,7 @@
     "express-session": "^1.12.1",
     "html-to-text": "^2.1.0",
     "jade": "^1.11.0",
+    "lodash": "^4.17.3",
     "mailgun-js": "^0.7.7",
     "markdown-it": "^7.0.0",
     "mdvariables": "^0.1.1",
