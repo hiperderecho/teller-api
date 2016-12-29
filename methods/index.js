@@ -36,5 +36,6 @@ exports.updateAgencyByAgencyId = require( './private/updateAgencyByAgencyId' );
 exports.deleteAgencyByAgencyId = require( './private/deleteAgencyByAgencyId' );
 
 // Utils
-exports.redactEmailsFromText = require( './redactEmailsFromText' );
-exports.formatHtmlToText     = require( './formatHtmlToText' );
+exports.redactEmailsFromText           = require( './redactEmailsFromText' );
+exports.formatHtmlToText               = require( './formatHtmlToText' );
+exports.caseAndAccentInsensitiveFilter = require( './caseAndAccentInsensitiveFilter' );
