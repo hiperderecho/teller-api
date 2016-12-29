@@ -4,6 +4,8 @@ module.exports =
   , port    : process.env.TELLER_DB_PORT    || 28015
   , authKey : process.env.TELLER_DB_AUTHKEY || ''
   , db      : process.env.TELLER_DB_DBNAME  || 'pidelainfo'}
+, searchResults :
+  { resultsPerPage : 20 }
 , emailing:
   { apiKey                       : process.env.TELLER_DEV_ENV ? process.env.TELLER_DEV_EMAILING_APIKEY : process.env.TELLER_EMAILING_APIKEY
   , domain                       : process.env.TELLER_DEV_ENV ? process.env.TELLER_DEV_EMAILING_DOMAIN : process.env.TELLER_EMAILING_DOMAIN

@@ -2,7 +2,7 @@ var methods = require('../../methods');
 
 module.exports = function ( request, response ) {
 
-	methods.getQuestionsCount()
+	methods.getQuestionsCount( {skip:request.query['skip']} )
 	.then( function ( result ) {
 
 		response.json( result );

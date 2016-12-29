@@ -9,12 +9,40 @@ var statusFilter = function ( doc ) {
 	.not();
 };
 
-module.exports = function ( limit ) {
+module.exports = function ( givens ) {
+	var limit    = givens && givens.limit    || null;
+	var skip     = givens && givens.skip     || 0;
+	var filter   = givens && givens.filter   || '';
+	var agencyId = givens && givens.agencyId || '';
 
-	if ( limit ) {
-		return Question.orderBy( { index: r.desc('createdAt') } ).without('g-recaptcha-response').without('authorSecret').filter( statusFilter ).limit( +limit ).execute();
+	if ( agencyId ) {
+		return Question.orderBy( { index: r.desc('createdAt') } )
+		.without('g-recaptcha-response')
+		.without('authorSecret')
+		.filter( statusFilter )
+		.filter( r.row('title').match( filter ) )
+		.filter( { agencyId: agencyId } )
+		.skip( +skip )
+		.limit( +limit )
+		.execute();
 	}
 	if ( !limit ) {
-		return Question.orderBy( { index: r.desc('createdAt') } ).without('g-recaptcha-response').without('authorSecret').filter( statusFilter ).execute();
+		return Question.orderBy( { index: r.desc('createdAt') } )
+		.without('g-recaptcha-response')
+		.without('authorSecret')
+		.filter( statusFilter )
+		.filter( r.row('title').match( filter ) )
+		.skip( +skip )
+		.execute();
+	}
+	if ( !agencyId ) {
+		return Question.orderBy( { index: r.desc('createdAt') } )
+		.without('g-recaptcha-response')
+		.without('authorSecret')
+		.filter( statusFilter )
+		.filter( r.row('title').match( filter ) )
+		.skip( +skip )
+		.limit( +limit )
+		.execute();
 	}
 };
