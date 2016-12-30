@@ -1,5 +1,6 @@
 var Question = require('../models/question');
 var r        = require('../orm').r;
+var methods  = require('./');
 
 // Will return all questions except the flagged ones
 var statusFilter = function ( doc ) {
@@ -17,7 +18,10 @@ module.exports = function ( givens ) {
 	if ( agencyId && filter ) {
 		return Question
 		.filter( statusFilter )
-		.filter( r.row('title').match( filter ) )
+		.filter( function ( doc ) {
+
+			return doc('title').downcase().match( methods.caseAndAccentInsensitiveFilter( filter ) );
+		} )
 		.filter( { agencyId: agencyId } )
 		.skip( +skip )
 		.count()
@@ -26,7 +30,10 @@ module.exports = function ( givens ) {
 	if ( filter ) {
 		return Question
 		.filter( statusFilter )
-		.filter( r.row('title').match( filter ) )
+		.filter( function ( doc ) {
+
+			return doc('title').downcase().match( methods.caseAndAccentInsensitiveFilter( filter ) );
+		} )
 		.skip( +skip )
 		.count()
 		.execute();
@@ -42,7 +49,10 @@ module.exports = function ( givens ) {
 	if ( !agencyId && !filter ) {
 		return Question
 		.filter( statusFilter )
-		.filter( r.row('title').match( filter ) )
+		.filter( function ( doc ) {
+
+			return doc('title').downcase().match( methods.caseAndAccentInsensitiveFilter( filter ) );
+		} )
 		.skip( +skip )
 		.count()
 		.execute();
